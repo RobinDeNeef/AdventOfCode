@@ -1,10 +1,12 @@
 # Ignore all
 *
-# Unignore all files with extensions
+
+# Unignore all with extensions
 !*.*
-# Unignore all directories
+
+# Unignore all dirs
 !*/
 
-# Ignore specific things
-/scoreboard
-/aoc2018
+#### Other files
+
+*.txt
