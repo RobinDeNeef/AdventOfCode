@@ -16,3 +16,9 @@ Started of the day wrong. I thought I could just fill up the ranges as strings a
 
 ## Day 5
 Today took embarassingly long to parse the input. I first started of trying to just split on spaces but this quickly broke thanks to the empty spaces. I even thought of replaceing 5 consecutive spaces with a "dummy crate" like [.] to make parsing easier. Finally I found out that I can just increment by 4 to get the next crate in the row. Afterwards I made a popSlice function to get the last item from the stack. Luckily part 2 went fairly easy. I could extend the popSlice function to pop a greater piece of the slice. After I figured out there is a difference between appending a slice with a string and [appending a slice with a slice](https://freshman.tech/snippets/go/concatenate-slices/), I also solved part 2!
+
+## Day 6
+Piece of cake! I just had to use some substrings and wrote a function to find duplicate characters and I could finish both parts.
+
+## Day 7
+Oh boy, this was quite the rollercoaster. I decided to go all in on the language features here. Creating structs for folders and files, using pointers etc. After a couple of hours I had the file system working and I could write recursive functions to calculate the size and print the tree. 
