@@ -40,6 +40,7 @@ type file struct {
 
 type folder struct {
 	absolutePath string
+	name string
 	parentFolder *folder
 	folders []*folder
 	files []file
@@ -60,7 +61,7 @@ func (f folder) calculateFolderSize() int {
 }
 
 func buildFileSystem(data []string) *folder {
-	root := folder{absolutePath: "/"}
+	root := folder{absolutePath: "/", name: "/"}
 	var currentPath string = "/"
 	var workingDirectory *folder
 	cursor := 0
@@ -76,7 +77,7 @@ func buildFileSystem(data []string) *folder {
 					currentPath = currentPath[:strings.LastIndex(currentPath, "/") + 1]
 					workingDirectory = workingDirectory.parentFolder
 				} else {
-					newFolder := folder{absolutePath: currentPath + "/" + line[2]}
+					newFolder := folder{absolutePath: currentPath + line[2], name: line[2]}
 					workingDirectory.folders = append(workingDirectory.folders, &newFolder)
 					newFolder.parentFolder = workingDirectory
 					workingDirectory = &newFolder
@@ -105,7 +106,7 @@ func printFolder(f *folder, depth int ) {
 	for i := 0; i < depth; i++  {
 		depthString += "  "
 	}
-	fmt.Println(depthString + f.absolutePath, "[DIR]")
+	fmt.Println(depthString + f.name, "[DIR]")
 	for _, nestedFolder := range f.folders {
 		printFolder(nestedFolder, depth + 1)
 	}
@@ -145,7 +146,8 @@ func main() {
     data, _ := readData("input.txt")
 	fileSystem := buildFileSystem(data)
 	totalSize := fileSystem.calculateFolderSize()
-	fmt.Println(totalSize)
+	fmt.Println(totalSize) // I don't really use this variable, but I can not make the function return nil since It's used in recursion
+	// printFolder(fileSystem, 0)
     fmt.Println(part1(FOLDER_SIZES))
     fmt.Println(part2(FOLDER_SIZES))
 }
